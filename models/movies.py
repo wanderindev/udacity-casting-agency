@@ -1,6 +1,7 @@
 from typing import Dict, List, Union
 from db import db
 from models.actors import ActorModel
+from models.model_mixin import ModelMixin
 
 
 MovieJSON = Dict[str, Union[int, str, List[str]]]
@@ -16,11 +17,11 @@ movies_actors = db.Table(
 )
 
 
-class MovieModel(db.Model):
+class MovieModel(db.Model, ModelMixin):
     __tablename__ = "movies"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(50), nullable=False, unique=True)
     release_date = db.Column(db.Date, nullable=False)
     actors = db.relationship(
         ActorModel,
@@ -29,9 +30,16 @@ class MovieModel(db.Model):
         backref=db.backref("movies", lazy=True),
     )
 
+    def __init__(self, **kwargs):
+        super(MovieModel, self).__init__(**kwargs)
+
     @classmethod
     def find_all(cls) -> List["MovieModel"]:
         return cls.query.order_by(MovieModel.title).all()
+
+    @classmethod
+    def find_by_id(cls, _id):
+        return cls.query.filter_by(id=_id).first()
 
     @classmethod
     def find_by_title(cls, title) -> "MovieModel":
