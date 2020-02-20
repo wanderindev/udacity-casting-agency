@@ -1,7 +1,14 @@
 import os
 from app import create_app
+from db import db
 
 app = create_app(os.getenv("FLASK_CONFIG") or "development")
+
+
+@app.before_first_request
+def create_tables():
+    db.drop_all()
+    db.create_all()
 
 
 if __name__ == "__main__":
