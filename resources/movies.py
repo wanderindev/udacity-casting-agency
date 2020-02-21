@@ -1,13 +1,18 @@
 from flask import abort, Blueprint, jsonify, request
+from typing import Dict, List, Union
 from auth import requires_auth
 from models.movies import MovieModel
 
 movies = Blueprint("movies", __name__)
+MovieJSON = Dict[str, Union[int, str, List[str]]]
+ResourceJSON = Dict[str, Union[bool, str, MovieJSON, List[MovieJSON]]]
+PayloadJSON = Dict[str, Union[str, List[str]]]
 
 
-@movies.route("/")
+# noinspection PyUnusedLocal
+@movies.route("/movies")
 @requires_auth("get:movies")
-def get_movies():
+def get_movies(payload: PayloadJSON) -> ResourceJSON:
     _movies = MovieModel.find_all()
 
     if len(_movies) == 0:
@@ -18,9 +23,10 @@ def get_movies():
     )
 
 
-@movies.route("/<str:movie_title>")
+# noinspection PyUnusedLocal
+@movies.route("/movies/<string:movie_title>")
 @requires_auth("get:movie")
-def get_movie(movie_title):
+def get_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
     movie = MovieModel.find_by_title(movie_title)
 
     if movie is None:
@@ -29,9 +35,10 @@ def get_movie(movie_title):
     return jsonify({"success": True, "movie": movie.json()}, 200)
 
 
-@movies.route("/", methods=["POST"])
+# noinspection PyUnusedLocal
+@movies.route("/movies", methods=["POST"])
 @requires_auth("post:movie")
-def post_movie():
+def post_movie(payload: PayloadJSON) -> ResourceJSON:
     data = request.get_json()
     movie = MovieModel(**data)
     result = movie.save_to_db()
@@ -46,9 +53,10 @@ def post_movie():
     )
 
 
-@movies.route("/<str:movie_title>", methods=["PATCH"])
+# noinspection PyUnusedLocal
+@movies.route("/movies/<string:movie_title>", methods=["PATCH"])
 @requires_auth("patch:movie")
-def patch_movie(movie_title):
+def patch_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
     movie = MovieModel.find_by_title(movie_title)
 
     if movie is None:
@@ -80,9 +88,10 @@ def patch_movie(movie_title):
     )
 
 
-@movies.route("/<str:movie_title>", methods=["DELETE"])
+# noinspection PyUnusedLocal
+@movies.route("/movies/<string:movie_title>", methods=["DELETE"])
 @requires_auth("delete:movie")
-def delete_movie(movie_title):
+def delete_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
     movie = MovieModel.find_by_title(movie_title)
 
     if movie is None:

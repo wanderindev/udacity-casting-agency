@@ -13,7 +13,7 @@ movies_actors = db.Table(
     db.Column(
         "actor_id", db.Integer, db.ForeignKey("actors.id"), nullable=False
     ),
-    db.PrimaryKeyConstraint("movie_id", "permission_id"),
+    db.PrimaryKeyConstraint("movie_id", "actor_id"),
 )
 
 
@@ -38,11 +38,11 @@ class MovieModel(db.Model, ModelMixin):
         return cls.query.order_by(MovieModel.title).all()
 
     @classmethod
-    def find_by_id(cls, _id):
+    def find_by_id(cls, _id: int) -> "MovieModel":
         return cls.query.filter_by(id=_id).first()
 
     @classmethod
-    def find_by_title(cls, title) -> "MovieModel":
+    def find_by_title(cls, title: str) -> "MovieModel":
         return cls.query.filter_by(title=title).first()
 
     def json(self) -> MovieJSON:

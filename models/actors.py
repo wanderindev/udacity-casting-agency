@@ -25,7 +25,7 @@ class ActorModel(db.Model, ModelMixin):
         return (abs(datetime.now() - self.date_of_birth)).years
 
     @age.setter
-    def age(self, age):
+    def age(self, age: int):
         raise AttributeError("age is not a writable attribute")
 
     @classmethod
@@ -33,11 +33,11 @@ class ActorModel(db.Model, ModelMixin):
         return cls.query.order_by(ActorModel.name).all()
 
     @classmethod
-    def find_by_id(cls, _id):
+    def find_by_id(cls, _id: int) -> "ActorModel":
         return cls.query.filter_by(id=_id).first()
 
     @classmethod
-    def find_by_name(cls, name) -> "ActorModel":
+    def find_by_name(cls, name: str) -> "ActorModel":
         return cls.query.filter_by(name=name).first()
 
     def json(self) -> ActorJSON:
