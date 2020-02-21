@@ -3,6 +3,8 @@ from flask_cors import CORS
 
 from config import config
 from db import db
+from resources.actors import actors
+from resources.errors import errors
 from resources.movies import movies
 
 cors = CORS()
@@ -22,6 +24,8 @@ def create_app(config_name: str = "development") -> Flask:
     cors.init_app(app)
     db.init_app(app)
 
-    app.register_blueprint(movies, url_prefix="/movies")
+    app.register_blueprint(actors)
+    app.register_blueprint(errors)
+    app.register_blueprint(movies)
 
     return app

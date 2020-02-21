@@ -6,7 +6,7 @@ app = create_app(os.getenv("FLASK_CONFIG") or "development")
 
 
 @app.before_first_request
-def create_tables():
+def create_tables() -> None:
     db.drop_all()
     db.create_all()
 
