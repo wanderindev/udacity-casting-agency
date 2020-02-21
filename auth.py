@@ -1,13 +1,14 @@
 import json
+from typing import Dict
 from flask import request
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = ""
+AUTH0_DOMAIN = "udacity-casting.auth0.com"
 ALGORITHMS = ["RS256"]
-API_AUDIENCE = ""
+API_AUDIENCE = "udacity-casting"
 
 
 class AuthError(Exception):
@@ -18,7 +19,7 @@ class AuthError(Exception):
         self.status_code = status_code
 
 
-def get_token_auth_header():
+def get_token_auth_header() -> str:
     """Obtains the Access Token from the Authorization Header"""
     auth = request.headers.get("Authorization", None)
     if not auth:
@@ -55,7 +56,7 @@ def get_token_auth_header():
     return token
 
 
-def check_permissions(permission, payload):
+def check_permissions(permission: str, payload: Dict[str, str]) -> bool:
     """
     Check for valid permissions in the payload
     :param permission: a permission
@@ -82,7 +83,7 @@ def check_permissions(permission, payload):
     return True
 
 
-def verify_decode_jwt(token):
+def verify_decode_jwt(token: str) -> Dict[str, str]:
     """
     Verify and decode a JWT
     :param token: a JWT
@@ -153,7 +154,7 @@ def verify_decode_jwt(token):
     )
 
 
-def requires_auth(permission=""):
+def requires_auth(permission: str = ""):
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
