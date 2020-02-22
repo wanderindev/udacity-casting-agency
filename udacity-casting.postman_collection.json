@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "ed488bac-00f8-407f-a95e-197be725ad5c",
+		"name": "udacity-casting",
+		"description": "This collection tests all endpoints for Udacity-Casting, the capstone project for the Udacity Full-stack Nanodegree.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "producer",
+			"item": [
+				{
+					"name": "/oauth/token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "18b88393-19fd-4fa2-a33d-c01f9fa724db",
+								"exec": [
+									"pm.test(\"value contains access token\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.access_token).to.be.an('string')",
+									"    pm.environment.set(\"token_for_producer\", jsonData.access_token)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "e898Rd2i0qF7N9df8CJN8iNlTcM2pdzm",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "rX8Zc_gB4_dK5oHruO6uf7SKRkAVfawXF8rofkBrccM707yLjkDHhGEI0A8L0CYq",
+									"description": "Required for confidential clients.",
+									"type": "text"
+								},
+								{
+									"key": "audience",
+									"value": "udacity-casting",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "producer@udacity-casting.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "fGKMEKeFF3n5",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{auth0_domain}}/oauth/token",
+							"protocol": "https",
+							"host": [
+								"{{auth0_domain}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "Connects to the Auth0 server with username and password and gets an access token."
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_for_producer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"My Great Movie\",\n\t\"release_date\": \"2020-01-31\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						},
+						"description": "POSTs a movie"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "director",
+			"item": [
+				{
+					"name": "/oauth/token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "18b88393-19fd-4fa2-a33d-c01f9fa724db",
+								"exec": [
+									"pm.test(\"value contains access token\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.access_token).to.be.an('string')",
+									"    pm.environment.set(\"token_for_director\", jsonData.access_token)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "e898Rd2i0qF7N9df8CJN8iNlTcM2pdzm",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "rX8Zc_gB4_dK5oHruO6uf7SKRkAVfawXF8rofkBrccM707yLjkDHhGEI0A8L0CYq",
+									"description": "Required for confidential clients.",
+									"type": "text"
+								},
+								{
+									"key": "audience",
+									"value": "udacity-casting",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "director@udacity-casting.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "fGKMEKeFF3n5",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{auth0_domain}}/oauth/token",
+							"protocol": "https",
+							"host": [
+								"{{auth0_domain}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "Connects to the Auth0 server with username and password and gets an access token."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "asistant",
+			"item": [
+				{
+					"name": "/oauth/token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "18b88393-19fd-4fa2-a33d-c01f9fa724db",
+								"exec": [
+									"pm.test(\"value contains access token\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.access_token).to.be.an('string')",
+									"    pm.environment.set(\"token_for_asistant\", jsonData.access_token)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "e898Rd2i0qF7N9df8CJN8iNlTcM2pdzm",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "rX8Zc_gB4_dK5oHruO6uf7SKRkAVfawXF8rofkBrccM707yLjkDHhGEI0A8L0CYq",
+									"description": "Required for confidential clients.",
+									"type": "text"
+								},
+								{
+									"key": "audience",
+									"value": "udacity-casting",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "asistant@udacity-casting.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "fGKMEKeFF3n5",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{auth0_domain}}/oauth/token",
+							"protocol": "https",
+							"host": [
+								"{{auth0_domain}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "Connects to the Auth0 server with username and password and gets an access token."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
