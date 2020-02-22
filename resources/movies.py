@@ -19,20 +19,20 @@ def get_movies(payload: PayloadJSON) -> ResourceJSON:
         abort(404)
 
     return jsonify(
-        {"success": True, "movies": [movie.json() for movie in _movies],}, 200
+        {"success": True, "movies": [movie.json() for movie in _movies],}
     )
 
 
 # noinspection PyUnusedLocal
-@movies.route("/movies/<string:movie_title>")
+@movies.route("/movies/<int:movie_id>")
 @requires_auth("get:movie")
-def get_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
-    movie = MovieModel.find_by_title(movie_title)
+def get_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
+    movie = MovieModel.find_by_id(movie_id)
 
     if movie is None:
         abort(404)
 
-    return jsonify({"success": True, "movie": movie.json()}, 200)
+    return jsonify({"success": True, "movie": movie.json()},)
 
 
 # noinspection PyUnusedLocal
@@ -54,10 +54,10 @@ def post_movie(payload: PayloadJSON) -> ResourceJSON:
 
 
 # noinspection PyUnusedLocal
-@movies.route("/movies/<string:movie_title>", methods=["PATCH"])
+@movies.route("/movies/<int:movie_id>", methods=["PATCH"])
 @requires_auth("patch:movie")
-def patch_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
-    movie = MovieModel.find_by_title(movie_title)
+def patch_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
+    movie = MovieModel.find_by_id(movie_id)
 
     if movie is None:
         abort(404)
@@ -76,11 +76,6 @@ def patch_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
     if result["error"]:
         abort(500)
 
-    result = movie.save_to_db()
-
-    if result["error"]:
-        abort(500)
-
     _id = result["id"]
 
     return jsonify(
@@ -89,10 +84,10 @@ def patch_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
 
 
 # noinspection PyUnusedLocal
-@movies.route("/movies/<string:movie_title>", methods=["DELETE"])
+@movies.route("/movies/<int:movie_id>", methods=["DELETE"])
 @requires_auth("delete:movie")
-def delete_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
-    movie = MovieModel.find_by_title(movie_title)
+def delete_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
+    movie = MovieModel.find_by_id(movie_id)
 
     if movie is None:
         abort(404)
@@ -102,4 +97,4 @@ def delete_movie(payload: PayloadJSON, movie_title: str) -> ResourceJSON:
     if result["error"]:
         abort(500)
 
-    return jsonify({"success": True, "deleted": movie_title}, 200)
+    return jsonify({"success": True, "deleted": movie_id},)

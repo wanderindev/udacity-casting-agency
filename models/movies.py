@@ -21,7 +21,7 @@ class MovieModel(db.Model, ModelMixin):
     __tablename__ = "movies"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False, unique=True)
+    title = db.Column(db.String(50), nullable=False)
     release_date = db.Column(db.Date, nullable=False)
     actors = db.relationship(
         ActorModel,
