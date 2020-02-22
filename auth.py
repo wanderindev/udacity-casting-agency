@@ -35,8 +35,7 @@ def get_token_auth_header() -> str:
         raise AuthError(
             {
                 "code": "invalid_header",
-                "description": "Authorization header must start "
-                'with "Bearer".',
+                "description": "Authorization header must start with Bearer.",
             },
             401,
         )
@@ -133,7 +132,7 @@ def verify_decode_jwt(token: str) -> Dict[str, str]:
             raise AuthError(
                 {
                     "code": "invalid_claims",
-                    "description": "Wrong claims.Please, check the audience",
+                    "description": "Wrong claims. Please, check the audience.",
                 },
                 401,
             )

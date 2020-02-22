@@ -31,7 +31,8 @@ def create_app(config_name: str = "development") -> Flask:
     def bad_request(error):
         return (
             jsonify(
-                {"success": False, "error": 400, "message": "Bad request"}),
+                {"success": False, "error": 400, "message": "Bad request"}
+            ),
             400,
         )
 
@@ -48,7 +49,8 @@ def create_app(config_name: str = "development") -> Flask:
     def unprocessable(error):  # pragma: no cover
         return (
             jsonify(
-                {"success": False, "error": 422, "message": "Unprocessable"}),
+                {"success": False, "error": 422, "message": "Unprocessable"}
+            ),
             422,
         )
 
