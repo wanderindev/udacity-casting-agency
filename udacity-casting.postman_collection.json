@@ -17,6 +17,10 @@
 							"script": {
 								"id": "18b88393-19fd-4fa2-a33d-c01f9fa724db",
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"pm.test(\"value contains access token\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.access_token).to.be.an('string')",
@@ -92,6 +96,29 @@
 				},
 				{
 					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75c9a985-b648-4c20-b04e-5f2f7e25237e",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains a movie\", function () {",
+									"    pm.expect(jsonData.movie).to.be.an('object')",
+									"    pm.expect(jsonData.movie.id).to.eql(1)",
+									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -120,6 +147,221 @@
 							]
 						},
 						"description": "POSTs a movie"
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains a list of movies\", function () {",
+									"    pm.expect(jsonData.movies[0].id).to.eql(1)",
+									"    pm.expect(jsonData.movies[0].release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_for_producer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/<int:movie_id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains a movie\", function () {",
+									"    pm.expect(jsonData.movie.id).to.eql(1)",
+									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75c9a985-b648-4c20-b04e-5f2f7e25237e",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains the modified movie\", function () {",
+									"    pm.expect(jsonData.movie).to.be.an('object')",
+									"    pm.expect(jsonData.movie.id).to.eql(1)",
+									"    pm.expect(jsonData.movie.release_date).to.eql('Sat, 15 Feb 2020 00:00:00 GMT')",
+									"    pm.expect(jsonData.movie.title).to.eql(\"My Other Great Movie\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/movies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "POSTs a movie"
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/<int:movie_id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains the id of the deleted movie\", function () {",
+									"    pm.expect(jsonData.deleted).to.eql(1)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_for_producer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -294,6 +536,628 @@
 							]
 						},
 						"description": "Connects to the Auth0 server with username and password and gets an access token."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "errors",
+			"item": [
+				{
+					"name": "Authorization header missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code authorization_header_missing\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('authorization_header_missing')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization header must start with Bearer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code invalid_header\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('invalid_header')",
+									"});",
+									"",
+									"pm.test(\"result contains error message description Authorization header must start with Bearer.\", function () {",
+									"    pm.expect(jsonData.message.description).to.eql('Authorization header must start with Bearer.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token_for_producer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code invalid_header\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('invalid_header')",
+									"});",
+									"",
+									"pm.test(\"result contains error message description Token not found.\", function () {",
+									"    pm.expect(jsonData.message.description).to.eql('Token not found.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization header must be bearer token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code invalid_header\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('invalid_header')",
+									"});",
+									"",
+									"pm.test(\"result contains error message description Authorization header must be bearer token.\", function () {",
+									"    pm.expect(jsonData.message.description).to.eql('Authorization header must be bearer token.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer  {{token_not_bearer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization malformed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code invalid_header\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('invalid_header')",
+									"});",
+									"",
+									"pm.test(\"result contains error message description Authorization malformed.\", function () {",
+									"    pm.expect(jsonData.message.description).to.eql('Authorization malformed.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer  {{token_malformed}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token expired",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code token_expired\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('token_expired')",
+									"});",
+									"",
+									"pm.test(\"result contains error message description Token expired.\", function () {",
+									"    pm.expect(jsonData.message.description).to.eql('Token expired.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer  {{token_expired}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unable to parse authentication token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code invalid_header\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('invalid_header')",
+									"});",
+									"",
+									"pm.test(\"result contains error message description Unable to parse authentication token.\", function () {",
+									"    pm.expect(jsonData.message.description).to.eql('Unable to parse authentication token.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer  {{token_wrong_auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unable to find the appropriate key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"result contains error message code invalid_header\", function () {",
+									"    pm.expect(jsonData.message.code).to.eql('invalid_header')",
+									"});",
+									"",
+									"pm.test(\"result contains error message description Unable to find the appropriate key.\", function () {",
+									"    pm.expect(jsonData.message.description).to.eql('Unable to find the appropriate key.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer  {{token_wrong_keys}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies (GET - Not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"result contains error message Not found.\", function () {",
+									"    pm.expect(jsonData.message).to.eql('Not found.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/<int:movie_id> (GET - Not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"",
+									"pm.test(\"result contains error message Not found.\", function () {",
+									"    pm.expect(jsonData.message).to.eql('Not found.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies (PATCH - Not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75c9a985-b648-4c20-b04e-5f2f7e25237e",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"",
+									"pm.test(\"result contains error message Not found.\", function () {",
+									"    pm.expect(jsonData.message).to.eql('Not found.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/movies/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"10"
+							]
+						},
+						"description": "POSTs a movie"
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/<int:movie_id> (DELETE - Not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"",
+									"pm.test(\"result contains error message Not found.\", function () {",
+									"    pm.expect(jsonData.message).to.eql('Not found.')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_for_producer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"10"
+							]
+						}
 					},
 					"response": []
 				}
