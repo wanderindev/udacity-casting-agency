@@ -13,7 +13,7 @@ class ActorModel(db.Model, ModelMixin):
     __tablename__ = "actors"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False, unique=True)
+    name = db.Column(db.String(50), nullable=False)
     date_of_birth = db.Column(db.DateTime)
     gender = db.Column(gender_enum)
 

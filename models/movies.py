@@ -50,5 +50,5 @@ class MovieModel(db.Model, ModelMixin):
             "id": self.id,
             "title": self.title,
             "release_date": self.release_date,
-            "actors": [actor.name for actor in self.actors],
+            "actors": [actor.json() for actor in self.actors],
         }

@@ -10,7 +10,7 @@ PayloadJSON = Dict[str, Union[str, List[str]]]
 
 
 # noinspection PyUnusedLocal
-@actors.route("/")
+@actors.route("/actors")
 @requires_auth("get:actors")
 def get_actors(payload: PayloadJSON) -> ResourceJSON:
     _actors = ActorModel.find_all()
@@ -19,20 +19,20 @@ def get_actors(payload: PayloadJSON) -> ResourceJSON:
         abort(404)
 
     return jsonify(
-        {"success": True, "actors": [actor.json() for actor in _actors],}, 200
+        {"success": True, "actors": [actor.json() for actor in _actors],},
     )
 
 
 # noinspection PyUnusedLocal
-@actors.route("/actors/<string:actor_name>")
+@actors.route("/actors/<int:actor_id>")
 @requires_auth("get:actor")
-def get_actor(payload: PayloadJSON, actor_name: str) -> ResourceJSON:
-    actor = ActorModel.find_by_name(actor_name)
+def get_actor(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
+    actor = ActorModel.find_by_id(actor_id)
 
     if actor is None:
         abort(404)
 
-    return jsonify({"success": True, "actor": actor.json()}, 200)
+    return jsonify({"success": True, "actor": actor.json()},)
 
 
 # noinspection PyUnusedLocal
@@ -54,10 +54,10 @@ def post_actor(payload: PayloadJSON) -> ResourceJSON:
 
 
 # noinspection PyUnusedLocal
-@actors.route("/actors/<string:actor_name>", methods=["PATCH"])
+@actors.route("/actors/<int:actor_id>", methods=["PATCH"])
 @requires_auth("patch:actor")
-def patch_actor(payload: PayloadJSON, actor_name: str) -> ResourceJSON:
-    actor = ActorModel.find_by_name(actor_name)
+def patch_actor(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
+    actor = ActorModel.find_by_id(actor_id)
 
     if actor is None:
         abort(404)
@@ -80,21 +80,16 @@ def patch_actor(payload: PayloadJSON, actor_name: str) -> ResourceJSON:
 
     result = actor.save_to_db()
 
-    if result["error"]:
-        abort(500)
-
-    _id = result["id"]
-
     return jsonify(
-        {"success": True, "actor": ActorModel.find_by_id(_id).json()}
+        {"success": True, "actor": ActorModel.find_by_id(actor_id).json()}
     )
 
 
 # noinspection PyUnusedLocal
-@actors.route("/actors/<string:actor_name>", methods=["DELETE"])
-@requires_auth("delete:movie")
-def delete_actors(payload: PayloadJSON, actor_name: str) -> ResourceJSON:
-    actor = ActorModel.find_by_name(actor_name)
+@actors.route("/actors/<int:actor_id>", methods=["DELETE"])
+@requires_auth("delete:actor")
+def delete_actors(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
+    actor = ActorModel.find_by_id(actor_id)
 
     if actor is None:
         abort(404)
@@ -104,4 +99,4 @@ def delete_actors(payload: PayloadJSON, actor_name: str) -> ResourceJSON:
     if result["error"]:
         abort(500)
 
-    return jsonify({"success": True, "deleted": actor_name}, 200)
+    return jsonify({"success": True, "deleted": actor_id},)

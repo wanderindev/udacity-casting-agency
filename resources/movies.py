@@ -1,6 +1,7 @@
 from flask import abort, Blueprint, jsonify, request
 from typing import Dict, List, Union
 from auth import requires_auth
+from models.actors import ActorModel
 from models.movies import MovieModel
 
 movies = Blueprint("movies", __name__)
@@ -71,6 +72,31 @@ def patch_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
 
     movie.title = title
     movie.release_date = release_date
+    result = movie.save_to_db()
+
+    if result["error"]:
+        abort(500)
+
+    _id = result["id"]
+
+    return jsonify(
+        {"success": True, "movie": MovieModel.find_by_id(_id).json()}
+    )
+
+
+# noinspection PyUnusedLocal
+@movies.route("/movies/<int:movie_id>/actor/<int:actor_id>", methods=["PATCH"])
+@requires_auth("patch:movie")
+def add_actor_to_movie(
+    payload: PayloadJSON, movie_id: int, actor_id: int
+) -> ResourceJSON:
+    movie = MovieModel.find_by_id(movie_id)
+    actor = ActorModel.find_by_id(actor_id)
+
+    if movie is None or actor is None:
+        abort(404)
+
+    movie.actors.append(actor)
     result = movie.save_to_db()
 
     if result["error"]:
