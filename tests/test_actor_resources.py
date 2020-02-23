@@ -72,7 +72,7 @@ class TestActorResources(BaseTest):
                 )
 
                 data = json.loads(results.data)
-                print(data)
+
                 self.assertEqual(data["actor"]["name"], self.actor["name"])
 
     def test_patch_actor_producer(self):
@@ -117,7 +117,6 @@ class TestActorResources(BaseTest):
                 )
 
                 data = json.loads(results.data)
-                print(data)
 
                 self.assertEqual(data["deleted"], 1)
 
@@ -233,7 +232,7 @@ class TestActorResources(BaseTest):
                 )
 
                 data = json.loads(results.data)
-                print(data)
+
                 self.assertEqual(data["actor"]["name"], self.actor["name"])
 
 
