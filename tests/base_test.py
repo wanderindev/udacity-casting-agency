@@ -19,10 +19,15 @@ class BaseTest(TestCase):
     }
     auth_headers = {"Content-Type": "application/x-www-form-urlencoded"}
     auth_url = "https://udacity-casting.auth0.com/oauth/token"
+    headers_assistant = {}
+    headers_director = {}
+    headers_producer = {}
 
     @classmethod
     def setUpClass(cls) -> None:
-        pass
+        cls.headers_producer = cls.get_producer_headers()
+        cls.headers_director = cls.get_director_headers()
+        cls.headers_assistant = cls.get_assistant_headers()
 
     def setUp(self) -> None:
         """Create all db tables before each test."""
@@ -38,8 +43,8 @@ class BaseTest(TestCase):
             db.drop_all()
 
     @classmethod
-    def get_asistant_headers(cls):
-        cls.auth_payload.username = "asistant@udacity-casting.com"
+    def get_assistant_headers(cls):
+        cls.auth_payload["username"] = "assistant@udacity-casting.com"
         token = requests.post(
             cls.auth_url, data=cls.auth_payload, headers=cls.auth_headers
         ).json()["access_token"]
@@ -51,7 +56,7 @@ class BaseTest(TestCase):
 
     @classmethod
     def get_director_headers(cls):
-        cls.auth_payload.username = "director@udacity-casting.com"
+        cls.auth_payload["username"] = "director@udacity-casting.com"
         token = requests.post(
             cls.auth_url, data=cls.auth_payload, headers=cls.auth_headers
         ).json()["access_token"]

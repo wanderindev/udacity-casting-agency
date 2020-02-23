@@ -14,7 +14,7 @@ class ActorModel(db.Model, ModelMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    date_of_birth = db.Column(db.DateTime)
+    date_of_birth = db.Column(db.Date, nullable=False)
     gender = db.Column(gender_enum)
 
     def __init__(self, **kwargs):
