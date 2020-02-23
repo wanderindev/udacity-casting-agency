@@ -1,4 +1,3 @@
-from datetime import datetime
 from typing import Dict, List, Union
 from sqlalchemy.dialects.postgresql import ENUM
 from db import db
@@ -19,14 +18,6 @@ class ActorModel(db.Model, ModelMixin):
 
     def __init__(self, **kwargs):
         super(ActorModel, self).__init__(**kwargs)
-
-    @property
-    def age(self) -> int:
-        return (abs(datetime.now() - self.date_of_birth)).years
-
-    @age.setter
-    def age(self, age: int):
-        raise AttributeError("age is not a writable attribute")
 
     @classmethod
     def find_all(cls) -> List["ActorModel"]:

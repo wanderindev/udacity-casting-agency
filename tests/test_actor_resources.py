@@ -18,7 +18,7 @@ class TestActorResources(BaseTest):
             self.patch_actor = {
                 "name": "Jane Doe",
                 "date_of_birth": "1991-01-31",
-                "gender": "Female"
+                "gender": "Female",
             }
 
     def test_post_actors_producer(self):
@@ -56,9 +56,7 @@ class TestActorResources(BaseTest):
                 data = json.loads(results.data)
 
                 self.assertEqual(len(data["actors"]), 1)
-                self.assertEqual(
-                    data["actors"][0]["name"], self.actor["name"]
-                )
+                self.assertEqual(data["actors"][0]["name"], self.actor["name"])
 
     def test_get_actor_producer(self):
         """Test GETing an actor with the producer credentials"""
@@ -74,7 +72,7 @@ class TestActorResources(BaseTest):
                 )
 
                 data = json.loads(results.data)
-
+                print(data)
                 self.assertEqual(data["actor"]["name"], self.actor["name"])
 
     def test_patch_actor_producer(self):
@@ -119,6 +117,7 @@ class TestActorResources(BaseTest):
                 )
 
                 data = json.loads(results.data)
+                print(data)
 
                 self.assertEqual(data["deleted"], 1)
 
@@ -138,9 +137,7 @@ class TestActorResources(BaseTest):
                 data = json.loads(results.data)
 
                 self.assertEqual(len(data["actors"]), 1)
-                self.assertEqual(
-                    data["actors"][0]["name"], self.actor["name"]
-                )
+                self.assertEqual(data["actors"][0]["name"], self.actor["name"])
 
     def test_get_actor_director(self):
         """Test GETing an actor with the director credentials"""
@@ -220,9 +217,7 @@ class TestActorResources(BaseTest):
                 data = json.loads(results.data)
 
                 self.assertEqual(len(data["actors"]), 1)
-                self.assertEqual(
-                    data["actors"][0]["name"], self.actor["name"]
-                )
+                self.assertEqual(data["actors"][0]["name"], self.actor["name"])
 
     def test_get_actor_assistant(self):
         """Test GETing an actor with the assistant credentials"""
@@ -238,7 +233,7 @@ class TestActorResources(BaseTest):
                 )
 
                 data = json.loads(results.data)
-
+                print(data)
                 self.assertEqual(data["actor"]["name"], self.actor["name"])
 
 
