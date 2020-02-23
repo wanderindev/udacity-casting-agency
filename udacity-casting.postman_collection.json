@@ -186,7 +186,7 @@
 									"pm.test(\"value contains access token\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.access_token).to.be.an('string')",
-									"    pm.environment.set(\"token_for_director\", jsonData.access_token)",
+									"    pm.environment.set(\"token_for_assistant\", jsonData.access_token)",
 									"});",
 									""
 								],
@@ -226,7 +226,7 @@
 								},
 								{
 									"key": "username",
-									"value": "director@udacity-casting.com",
+									"value": "assistant@udacity-casting.com",
 									"type": "text"
 								},
 								{
@@ -755,13 +755,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/10",
+							"raw": "{{url}}/movies/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"10"
+								"1"
 							]
 						}
 					},
@@ -809,13 +809,13 @@
 							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/movies/10",
+							"raw": "{{url}}/movies/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"10"
+								"1"
 							]
 						},
 						"description": "POSTs a movie"
@@ -860,13 +860,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/10",
+							"raw": "{{url}}/movies/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"10"
+								"1"
 							]
 						}
 					},
@@ -958,13 +958,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/10",
+							"raw": "{{url}}/movies/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"10"
+								"1"
 							]
 						}
 					},
@@ -1012,13 +1012,13 @@
 							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/actors/10",
+							"raw": "{{url}}/actors/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"10"
+								"1"
 							]
 						},
 						"description": "POSTs a movie"
@@ -1067,13 +1067,13 @@
 							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/movies/10/actor/1",
+							"raw": "{{url}}/movies/1/actor/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"10",
+								"1",
 								"actor",
 								"1"
 							]
@@ -1120,13 +1120,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/actors/10",
+							"raw": "{{url}}/actors/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"10"
+								"1"
 							]
 						}
 					},
@@ -1230,13 +1230,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/2",
+							"raw": "{{url}}/movies/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1344,13 +1344,13 @@
 							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/movies/3",
+							"raw": "{{url}}/movies/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"3"
+								"1"
 							]
 						},
 						"description": "POSTs a movie"
@@ -1402,15 +1402,15 @@
 							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/movies/3/actor/3",
+							"raw": "{{url}}/movies/1/actor/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"3",
+								"1",
 								"actor",
-								"3"
+								"1"
 							]
 						},
 						"description": "POSTs a movie"
@@ -1462,13 +1462,13 @@
 							"raw": "{\n\t\"name\": \"Jane Doe\",\n\t\"date_of_birth\": \"1991-01-31\",\n\t\"gender\": \"Female\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/actors/3",
+							"raw": "{{url}}/actors/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"3"
+								"1"
 							]
 						},
 						"description": "POSTs a movie"
@@ -1516,13 +1516,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/3",
+							"raw": "{{url}}/movies/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -1569,13 +1569,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/actors/3",
+							"raw": "{{url}}/actors/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -1689,13 +1689,15 @@
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
+									"pm.environment.set(\"movie_id\", jsonData.movie.id)",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
 									"pm.test(\"result contains a movie\", function () {",
 									"    pm.expect(jsonData.movie).to.be.an('object')",
-									"    pm.expect(jsonData.movie.id).to.eql(1)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});",
 									""
@@ -1750,7 +1752,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a list of movies\", function () {",
-									"    pm.expect(jsonData.movies[0].id).to.eql(1)",
+									"    pm.expect(jsonData.movies[0].id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movies[0].title).to.eql('My Great Movie')",
 									"    pm.expect(jsonData.movies[0].release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});"
@@ -1800,7 +1802,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a movie\", function () {",
-									"    pm.expect(jsonData.movie.id).to.eql(1)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});",
 									""
@@ -1824,19 +1826,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/1",
+							"raw": "{{url}}/movies/{{movie_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"1"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": ""
-								}
+								"{{movie_id}}"
 							]
 						}
 					},
@@ -1858,7 +1854,7 @@
 									"",
 									"pm.test(\"result contains the modified movie\", function () {",
 									"    pm.expect(jsonData.movie).to.be.an('object')",
-									"    pm.expect(jsonData.movie.id).to.eql(1)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Sat, 15 Feb 2020 00:00:00 GMT')",
 									"    pm.expect(jsonData.movie.title).to.eql(\"My Other Great Movie\")",
 									"});",
@@ -1887,13 +1883,13 @@
 							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/movies/1",
+							"raw": "{{url}}/movies/{{movie_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"1"
+								"{{movie_id}}"
 							]
 						},
 						"description": "POSTs a movie"
@@ -1910,13 +1906,15 @@
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
+									"pm.environment.set(\"actor_id\", jsonData.actor.id)",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
 									"pm.test(\"result contains an actor\", function () {",
 									"    pm.expect(jsonData.actor).to.be.an('object')",
-									"    pm.expect(jsonData.actor.id).to.eql(1)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Male')",
@@ -1972,7 +1970,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a list of actors\", function () {",
-									"    pm.expect(jsonData.actors[0].id).to.eql(1)",
+									"    pm.expect(jsonData.actors[0].id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actors[0].name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actors[0].date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actors[0].gender).to.eql('Male')",
@@ -2023,7 +2021,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains an actor\", function () {",
-									"    pm.expect(jsonData.actor.id).to.eql(1)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Male')",
@@ -2048,13 +2046,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/actors/1",
+							"raw": "{{url}}/actors/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"1"
+								"{{actor_id}}"
 							]
 						}
 					},
@@ -2076,7 +2074,7 @@
 									"",
 									"pm.test(\"result contains the modified actor\", function () {",
 									"    pm.expect(jsonData.actor).to.be.an('object')",
-									"    pm.expect(jsonData.actor.id).to.eql(1)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('Jane Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Thu, 31 Jan 1991 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Female')",
@@ -2105,13 +2103,13 @@
 							"raw": "{\n\t\"name\": \"Jane Doe\",\n\t\"date_of_birth\": \"1991-01-31\",\n\t\"gender\": \"Female\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/actors/1",
+							"raw": "{{url}}/actors/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"1"
+								"{{actor_id}}"
 							]
 						},
 						"description": "POSTs a movie"
@@ -2133,7 +2131,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a movie with a list of actors\", function () {",
-									"    pm.expect(jsonData.movie.actors[0].id).to.eql(1)",
+									"    pm.expect(jsonData.movie.actors[0].id).to.eql(pm.environment.get(\"actor_id\"))",
 									"});",
 									"",
 									"pm.test(\"result contains an actor with a list of movie title\", function () {",
@@ -2163,15 +2161,15 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/movies/1/actor/1",
+							"raw": "{{url}}/movies/{{movie_id}}/actor/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"1",
+								"{{movie_id}}",
 								"actor",
-								"1"
+								"{{actor_id}}"
 							]
 						},
 						"description": "POSTs a movie"
@@ -2193,7 +2191,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains the id of the deleted actor\", function () {",
-									"    pm.expect(jsonData.deleted).to.eql(1)",
+									"    pm.expect(jsonData.deleted).to.eql(pm.environment.get(\"actor_id\"))",
 									"});",
 									""
 								],
@@ -2216,13 +2214,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/actors/1",
+							"raw": "{{url}}/actors/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"1"
+								"{{actor_id}}"
 							]
 						}
 					},
@@ -2243,7 +2241,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains the id of the deleted movie\", function () {",
-									"    pm.expect(jsonData.deleted).to.eql(1)",
+									"    pm.expect(jsonData.deleted).to.eql(pm.environment.get(\"movie_id\"))",
 									"});",
 									""
 								],
@@ -2266,13 +2264,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/1",
+							"raw": "{{url}}/movies/{{movie_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"1"
+								"{{movie_id}}"
 							]
 						}
 					},
@@ -2294,13 +2292,15 @@
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
+									"pm.environment.set(\"movie_id\", jsonData.movie.id)",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
 									"pm.test(\"result contains a movie\", function () {",
 									"    pm.expect(jsonData.movie).to.be.an('object')",
-									"    pm.expect(jsonData.movie.id).to.eql(2)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});",
 									""
@@ -2436,7 +2436,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a list of movies\", function () {",
-									"    pm.expect(jsonData.movies[0].id).to.eql(2)",
+									"    pm.expect(jsonData.movies[0].id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movies[0].title).to.eql('My Great Movie')",
 									"    pm.expect(jsonData.movies[0].release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});"
@@ -2486,7 +2486,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a movie\", function () {",
-									"    pm.expect(jsonData.movie.id).to.eql(2)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});",
 									""
@@ -2510,13 +2510,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/2",
+							"raw": "{{url}}/movies/{{movie_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"2"
+								"{{movie_id}}"
 							]
 						}
 					},
@@ -2538,7 +2538,7 @@
 									"",
 									"pm.test(\"result contains the modified movie\", function () {",
 									"    pm.expect(jsonData.movie).to.be.an('object')",
-									"    pm.expect(jsonData.movie.id).to.eql(2)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Sat, 15 Feb 2020 00:00:00 GMT')",
 									"    pm.expect(jsonData.movie.title).to.eql(\"My Other Great Movie\")",
 									"});",
@@ -2567,13 +2567,13 @@
 							"raw": "{\n\t\"title\": \"My Other Great Movie\",\n\t\"release_date\": \"2020-02-15\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/movies/2",
+							"raw": "{{url}}/movies/{{movie_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"2"
+								"{{movie_id}}"
 							]
 						},
 						"description": "POSTs a movie"
@@ -2590,13 +2590,15 @@
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
+									"pm.environment.set(\"actor_id\", jsonData.actor.id)",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
 									"pm.test(\"result contains an actor\", function () {",
 									"    pm.expect(jsonData.actor).to.be.an('object')",
-									"    pm.expect(jsonData.actor.id).to.eql(2)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Male')",
@@ -2652,7 +2654,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a list of actors\", function () {",
-									"    pm.expect(jsonData.actors[0].id).to.eql(2)",
+									"    pm.expect(jsonData.actors[0].id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actors[0].name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actors[0].date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actors[0].gender).to.eql('Male')",
@@ -2703,7 +2705,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains an actor\", function () {",
-									"    pm.expect(jsonData.actor.id).to.eql(2)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Male')",
@@ -2728,13 +2730,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/actors/2",
+							"raw": "{{url}}/actors/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"2"
+								"{{actor_id}}"
 							]
 						}
 					},
@@ -2750,13 +2752,13 @@
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
-									"pm.test(\"Status code is 200\", function () {",
+									"pm.test(\"Status code is 200\", function() {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"result contains the modified actor\", function () {",
+									"pm.test(\"result contains the modified actor\", function() {",
 									"    pm.expect(jsonData.actor).to.be.an('object')",
-									"    pm.expect(jsonData.actor.id).to.eql(2)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('Jane Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Thu, 31 Jan 1991 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Female')",
@@ -2785,13 +2787,13 @@
 							"raw": "{\n\t\"name\": \"Jane Doe\",\n\t\"date_of_birth\": \"1991-01-31\",\n\t\"gender\": \"Female\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/actors/2",
+							"raw": "{{url}}/actors/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"2"
+								"{{actor_id}}"
 							]
 						},
 						"description": "POSTs a movie"
@@ -2813,7 +2815,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a movie with a list of actors\", function () {",
-									"    pm.expect(jsonData.movie.actors[0].id).to.eql(2)",
+									"    pm.expect(jsonData.movie.actors[0].id).to.eql(pm.environment.get(\"actor_id\"))",
 									"});",
 									"",
 									"pm.test(\"result contains an actor with a list of movie title\", function () {",
@@ -2843,15 +2845,15 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/movies/2/actor/2",
+							"raw": "{{url}}/movies/{{movie_id}}/actor/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"2",
+								"{{movie_id}}",
 								"actor",
-								"2"
+								"{{actor_id}}"
 							]
 						},
 						"description": "POSTs a movie"
@@ -2873,7 +2875,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains the id of the deleted actor\", function () {",
-									"    pm.expect(jsonData.deleted).to.eql(2)",
+									"    pm.expect(jsonData.deleted).to.eql(pm.environment.get(\"actor_id\"))",
 									"});",
 									""
 								],
@@ -2896,13 +2898,63 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/actors/2",
+							"raw": "{{url}}/actors/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"2"
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/<int:movie_id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains the id of the deleted movie\", function () {",
+									"    pm.expect(jsonData.deleted).to.eql(pm.environment.get(\"movie_id\"))",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies/{{movie_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
 							]
 						}
 					},
@@ -2946,13 +2998,15 @@
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
+									"pm.environment.set(\"movie_id\", jsonData.movie.id)",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
 									"pm.test(\"result contains a movie\", function () {",
 									"    pm.expect(jsonData.movie).to.be.an('object')",
-									"    pm.expect(jsonData.movie.id).to.eql(3)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});",
 									""
@@ -3088,7 +3142,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a list of movies\", function () {",
-									"    pm.expect(jsonData.movies[0].id).to.eql(3)",
+									"    pm.expect(jsonData.movies[0].id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movies[0].title).to.eql('My Great Movie')",
 									"    pm.expect(jsonData.movies[0].release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});"
@@ -3138,7 +3192,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a movie\", function () {",
-									"    pm.expect(jsonData.movie.id).to.eql(3)",
+									"    pm.expect(jsonData.movie.id).to.eql(pm.environment.get(\"movie_id\"))",
 									"    pm.expect(jsonData.movie.release_date).to.eql('Fri, 31 Jan 2020 00:00:00 GMT')",
 									"});",
 									""
@@ -3162,13 +3216,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/movies/3",
+							"raw": "{{url}}/movies/{{movie_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"movies",
-								"3"
+								"{{movie_id}}"
 							]
 						}
 					},
@@ -3184,13 +3238,15 @@
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
+									"pm.environment.set(\"actor_id\", jsonData.actor.id)",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
 									"pm.test(\"result contains an actor\", function () {",
 									"    pm.expect(jsonData.actor).to.be.an('object')",
-									"    pm.expect(jsonData.actor.id).to.eql(3)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Male')",
@@ -3246,7 +3302,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains a list of actors\", function () {",
-									"    pm.expect(jsonData.actors[0].id).to.eql(3)",
+									"    pm.expect(jsonData.actors[0].id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actors[0].name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actors[0].date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actors[0].gender).to.eql('Male')",
@@ -3297,7 +3353,7 @@
 									"});",
 									"",
 									"pm.test(\"result contains an actor\", function () {",
-									"    pm.expect(jsonData.actor.id).to.eql(3)",
+									"    pm.expect(jsonData.actor.id).to.eql(pm.environment.get(\"actor_id\"))",
 									"    pm.expect(jsonData.actor.name).to.eql('John Doe')",
 									"    pm.expect(jsonData.actor.date_of_birth).to.eql('Wed, 31 Jan 1990 00:00:00 GMT')",
 									"    pm.expect(jsonData.actor.gender).to.eql('Male')",
@@ -3322,13 +3378,113 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/actors/3",
+							"raw": "{{url}}/actors/{{actor_id}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"actors",
-								"3"
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/<int:actor_id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains the id of the deleted actor\", function () {",
+									"    pm.expect(jsonData.deleted).to.eql(pm.environment.get(\"actor_id\"))",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/actors/{{actor_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/<int:movie_id>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ed0a2c-992e-40ef-b7f7-4c5410991b37",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"result contains the id of the deleted movie\", function () {",
+									"    pm.expect(jsonData.deleted).to.eql(pm.environment.get(\"movie_id\"))",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token_for_producer}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies/{{movie_id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
 							]
 						}
 					},
