@@ -33,7 +33,12 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    pass
+    DEBUG = False
+    TESTING = False
+    SQLALCHEMY_DATABASE_URI = (
+            os.environ.get("SQLALCHEMY_DATABASE_URI")
+            or "postgresql://casting:pass@localhost:5432/casting"
+    )
 
 
 config = {
