@@ -13,6 +13,7 @@ PayloadJSON = Dict[str, Union[str, List[str]]]
 @actors.route("/actors")
 @requires_auth("get:actors")
 def get_actors(payload: PayloadJSON) -> ResourceJSON:
+    """Return a list of actors"""
     _actors = ActorModel.find_all()
 
     if len(_actors) == 0:
@@ -27,6 +28,7 @@ def get_actors(payload: PayloadJSON) -> ResourceJSON:
 @actors.route("/actors/<int:actor_id>")
 @requires_auth("get:actor")
 def get_actor(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
+    """Return an actor by actor_id"""
     actor = ActorModel.find_by_id(actor_id)
 
     if actor is None:
@@ -39,6 +41,7 @@ def get_actor(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
 @actors.route("/actors", methods=["POST"])
 @requires_auth("post:actor")
 def post_actor(payload: PayloadJSON) -> ResourceJSON:
+    """Create a new actor"""
     data = request.get_json()
     actor = ActorModel(**data)
     result = actor.save_to_db()
@@ -57,6 +60,7 @@ def post_actor(payload: PayloadJSON) -> ResourceJSON:
 @actors.route("/actors/<int:actor_id>", methods=["PATCH"])
 @requires_auth("patch:actor")
 def patch_actor(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
+    """Update an actor's information by actor_id"""
     actor = ActorModel.find_by_id(actor_id)
 
     if actor is None:
@@ -89,6 +93,7 @@ def patch_actor(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
 @actors.route("/actors/<int:actor_id>", methods=["DELETE"])
 @requires_auth("delete:actor")
 def delete_actors(payload: PayloadJSON, actor_id: int) -> ResourceJSON:
+    """Delete an actor by actor_id"""
     actor = ActorModel.find_by_id(actor_id)
 
     if actor is None:

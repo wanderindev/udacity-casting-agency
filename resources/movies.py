@@ -14,6 +14,7 @@ PayloadJSON = Dict[str, Union[str, List[str]]]
 @movies.route("/movies")
 @requires_auth("get:movies")
 def get_movies(payload: PayloadJSON) -> ResourceJSON:
+    """Return a list of movies"""
     _movies = MovieModel.find_all()
 
     if len(_movies) == 0:
@@ -28,6 +29,7 @@ def get_movies(payload: PayloadJSON) -> ResourceJSON:
 @movies.route("/movies/<int:movie_id>")
 @requires_auth("get:movie")
 def get_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
+    """Return a movie by movie_id"""
     movie = MovieModel.find_by_id(movie_id)
 
     if movie is None:
@@ -40,6 +42,7 @@ def get_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
 @movies.route("/movies", methods=["POST"])
 @requires_auth("post:movie")
 def post_movie(payload: PayloadJSON) -> ResourceJSON:
+    """Create a new movie"""
     data = request.get_json()
     movie = MovieModel(**data)
     result = movie.save_to_db()
@@ -58,6 +61,7 @@ def post_movie(payload: PayloadJSON) -> ResourceJSON:
 @movies.route("/movies/<int:movie_id>", methods=["PATCH"])
 @requires_auth("patch:movie")
 def patch_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
+    """Update a movie by movie_id"""
     movie = MovieModel.find_by_id(movie_id)
 
     if movie is None:
@@ -90,6 +94,7 @@ def patch_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
 def add_actor_to_movie(
     payload: PayloadJSON, movie_id: int, actor_id: int
 ) -> ResourceJSON:
+    """Add an actor by actor_id to a movie by movie_id"""
     movie = MovieModel.find_by_id(movie_id)
     actor = ActorModel.find_by_id(actor_id)
 
@@ -113,6 +118,7 @@ def add_actor_to_movie(
 @movies.route("/movies/<int:movie_id>", methods=["DELETE"])
 @requires_auth("delete:movie")
 def delete_movie(payload: PayloadJSON, movie_id: int) -> ResourceJSON:
+    """Delete a movie by movie_id"""
     movie = MovieModel.find_by_id(movie_id)
 
     if movie is None:

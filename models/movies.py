@@ -5,6 +5,11 @@ from models.model_mixin import ModelMixin
 
 
 MovieJSON = Dict[str, Union[int, str, List[str]]]
+
+"""
+Create an association table for the many-to-many relation 
+between movies and actors
+"""
 movies_actors = db.Table(
     "movies_actors",
     db.Column(
@@ -18,6 +23,8 @@ movies_actors = db.Table(
 
 
 class MovieModel(db.Model, ModelMixin):
+    """SQLAlchemy model for movies"""
+
     __tablename__ = "movies"
 
     id = db.Column(db.Integer, primary_key=True)

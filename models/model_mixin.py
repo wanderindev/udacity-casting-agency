@@ -6,6 +6,8 @@ from db import db
 
 # noinspection PyUnresolvedReferences
 class ModelMixin:
+    """Mixing class inherited by all models"""
+
     def delete_from_db(self) -> Dict[str, bool]:
         try:
             db.session.delete(self)

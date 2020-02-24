@@ -9,6 +9,8 @@ gender_enum = ENUM("Male", "Female", name="gender")
 
 
 class ActorModel(db.Model, ModelMixin):
+    """SQLAlchemy model for actors"""
+
     __tablename__ = "actors"
 
     id = db.Column(db.Integer, primary_key=True)
