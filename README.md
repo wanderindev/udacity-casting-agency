@@ -27,13 +27,23 @@ The project provides a RESTful API for performing CRUD operations for models sto
 The database consists of three tables: actors, movies, and movies_actors.  The first two tables store the actor model and movie model.
 The third table is use for modeling the many-to-many relationship between actors and movies.
 
-The API allows for three users with different roles and permissions to authenticate and call the endpoints.
-
-The project is deployed to Heroku.
-
 A Postman collection and two Postman environment are provided to test all endpoint locally and at Heroku.
 
-Unittests are provided to test all endpoint succeess and failure states.
+The API allows for the following users with different roles and permissions to authenticate and call the endpoints:
+
+| Users                         | Role      | Permissions                                                                       |
+|-------------------------------|-----------|-----------------------------------------------------------------------------------|
+| assistant@udacity-casting.com | assistant | get:actor, get:actors, get:movie, get:movies                                      |
+| director@udacity-casting.com  | director  | all assistant permissions plus post:actor, patch:actor, delete:actor, patch:movie |
+| producer@udacity-casting.com  | producer  | all director permissions plus post:movie, delete:movie                            |
+
+The included Postman collection and UnitTest are setup to call the Auth0 endpoint to retrieve a valid token so it is not necessary to
+setup authentication prior to testing the project.
+
+The project is deployed to Heroku at [Udacity-Casting-Agency](https://shielded-journey-52543.herokuapp.com).  Instructions on
+how to test the deployed API with Postman are provided bellow.
+
+Unittests are provided to test all endpoint success and failure states.
 
 ## How to use
 
