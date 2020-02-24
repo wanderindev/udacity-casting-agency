@@ -7,8 +7,8 @@
   <a href="https://github.com/wanderindev/udacity-casting-agency/graphs/commit-activity">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" target="_blank" />
   </a>
-  <a href="https://htmlpreview.github.io/?https://github.com/wanderindev/udacity-casting-agency/blob/master/backend/htmlcov/index.html">
-    <img alt="Coverage" src="https://img.shields.io/badge/coverage-99%25-yellowgreen.svg" target="_blank" />
+  <a href="https://htmlpreview.github.io/?https://github.com/wanderindev/udacity-casting-agency/blob/master/htmlcov/index.html">
+    <img alt="Coverage" src="https://img.shields.io/badge/coverage-97%25-yellowgreen.svg" target="_blank" />
   </a>  
   <a href="https://github.com/wanderindev/udacity-casting-agency/blob/master/LICENSE.md">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
@@ -88,11 +88,11 @@ flask run
 Open Postman and import the included collection (```udacity-casting.postman_collection.json```)
 and the two included environments (```udacity-casting-local.postman_environment.json``` and ```udacity-casting-heroku.postman_environment.json```).
 
-### Run Postman collection locally
+#### Run Postman collection locally
 With the API running in the terminal window, click on ```Runner``` in Postman, select the ```udacity-casting``` collection and the 
 ```udacity-casting-local``` environment.  Scroll down and click on ```Run Udacity-Casting```.
 
-### Run Postman collection at Heroku
+#### Run Postman collection at Heroku
 The API is running at https://shielded-journey-52543.herokuapp.com.  To test the remote API, click on ```Runner``` in Postman, select the ```udacity-casting``` collection and the 
 ```udacity-casting-heroku``` environment.  Scroll down and click on ```Run Udacity-Casting```.
 
