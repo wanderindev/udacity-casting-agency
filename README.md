@@ -46,66 +46,86 @@ setup authentication prior to testing the project.
 The project is deployed to Heroku at [Udacity-Casting-Agency](https://shielded-journey-52543.herokuapp.com).  Instructions on
 how to test the deployed API with Postman are provided below.
 
-## How to use
-
-### Clone the repository
-Clone the repository and cd into the project root:
+## Install
+To use the project in your development machine, clone it, and go to the project's root:
 ```sh
 git clone https://github.com/wanderindev/udacity-casting-agency.git
 cd udacity-casting-agency
 ``` 
-
-### The database
-I included a Dockerfile and a docker-compose.yml that runs a local Postgresql instance and
-creates two databases (one for development and one for testing).
-
-If you have Docker installed and configured in your system, this is the 
-recommended way for running the database.  Otherwise, create and initialize 
-the databases in your own Postgresql instance and adjust
-the connection string in ```config.py```.
-
-To use the included Postgresql setup, cd into the postgresql directory 
-and run docker-compose:
-```sh
-cd postgresql
-docker-compose up --build
-```
-
-### The backend
-In a second terminal window, cd into the project root, create a virtual
-environment, and activate it:
+From the project's root, create and activate your virtual environment:
 ```sh
 cd udacity-casting-agency
 python3 -m venv venv
 . venv/bin/activate
 ```
-Install the project requirements:
+
+And install the project's dependencies:
 ```sh
 pip install -r requirements.txt
 ```
 
-To run the tests, use:
+## Development
+Edit the code as required.  Here is the list of the most important modules and packages in the project:
+
+* ```app.py``` contains the app factory.
+ * ```auth.py``` contains the authentication/authorization code.
+* ```config.py``` contains the app settings.
+* ```manage.py``` contains the database migration code.
+* ```run.py``` runs the application.
+* ```/models``` contains the modules for the database models.
+* ```/resources``` contains the modules with the API endpoints.
+* ```/tests``` contains the modules with the UnitTests.
+
+### Database
+To test your code modifications you need to have a PostgreSQL instance running locally. 
+
+I included a Dockerfile and a docker-compose.yml that runs a local PostgreSQL instance and
+creates two databases (one for development and one for testing).
+
+If you have Docker installed and configured in your system, this is the 
+recommended way for running the database.  Otherwise, create and initialize 
+the databases in your own PostgreSQL instance and adjust
+the connection string in ```config.py```.
+
+To use the included PostgreSQL setup, **open a new terminal window**, go into the ```postgresql``` directory, 
+and run docker-compose:
 ```sh
-coverage run -m unittest tests/test_actor_model.py tests/test_movie_model.py tests/test_actor_resources.py tests/test_movie_resources.py tests/test_errors.py
+cd udacity-casting-agency/postgresql
+docker-compose up --build
 ```
 
-To run the RESTful API, use:
+### API
+Once your database is running in its own terminal window, you can run the API from **the terminal window where your virtual environment is activated**:
 ```sh
 export FLASK_APP=run
 flask run
 ```
+
+### Tests
+To insure code quality, I added UnitTest to the project. All tests all located in the tests package.
+
+To test the project, **from the terminal window where your virtual environment is activated** run:
+```sh
+coverage run -m unittest tests/test_actor_model.py tests/test_movie_model.py tests/test_actor_resources.py tests/test_movie_resources.py tests/test_errors.py
+```
+The included tests provide 97% coverage for the codebase. You can find the coverage report [here](https://htmlpreview.github.io/?https://github.com/wanderindev/udacity-casting-agency/blob/master/htmlcov/index.html).
 
 ### Postman
 Open Postman and import the included collection (```udacity-casting.postman_collection.json```)
 and the two included environments (```udacity-casting-local.postman_environment.json``` and ```udacity-casting-heroku.postman_environment.json```).
 
 #### Run Postman collection locally
-With the API running in the terminal window, click on ```Runner``` in Postman, select the ```udacity-casting``` collection and the 
-```udacity-casting-local``` environment.  Scroll down and click on ```Run Udacity-Casting```.
+With the API running in a terminal window and the database running in another terminal window, from Postman:
+
+1. Click on ```Runner```. 
+2. Select the ```udacity-casting``` collection, and the ```udacity-casting-local``` environment.
+3. Scroll down and click on ```Run Udacity-Casting```.
 
 #### Run Postman collection at Heroku
-The API is running at https://shielded-journey-52543.herokuapp.com.  To test the remote API, click on ```Runner``` in Postman, select the ```udacity-casting``` collection and the 
-```udacity-casting-heroku``` environment.  Scroll down and click on ```Run Udacity-Casting```.
+The API is running at https://shielded-journey-52543.herokuapp.com.  To test the remote API, from Postman:
+1. Click on ```Runner```.
+2. Select the ```udacity-casting``` collection and the ```udacity-casting-heroku``` environment.
+3. Scroll down and click on ```Run Udacity-Casting```.
 
  ## Author
 
